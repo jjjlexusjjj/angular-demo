@@ -1,6 +1,6 @@
 <div class="registration-container">
   <mat-card>
-    <form class="registration-form" [formGroup]="registrationForm" (ngSubmit)="onSave(registrationForm.value)">
+    <form class="registration-form" [formGroup]="registrationForm" novalidate (ngSubmit)="onSave(registrationForm.value)">
       <mat-form-field>
         <input matInput placeholder="Username" formControlName="username">
         <mat-error *ngIf="registrationForm.hasError('required', ['username'])">
@@ -9,13 +9,21 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Password" formControlName="password">
+        <input matInput placeholder="Email" type="email" formControlName=email>
+        <mat-icon matSuffix *ngIf="registrationForm.get('email').pending">loop</mat-icon>
+        <mat-error *ngIf="registrationForm.hasError('required', ['email'])">Email is required</mat-error>
+        <mat-error *ngIf="registrationForm.hasError('email', ['email'])">Invalid format</mat-error>
+        <mat-error *ngIf="registrationForm.hasError('blackList', ['email'])">Email in the black list</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password" type="password">
         <mat-error *ngIf="registrationForm.hasError('required', ['password'])">Password is required</mat-error>
         <mat-error *ngIf="registrationForm.hasError('minlength', ['password'])">Password should be at least 6 symbols</mat-error>
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Confirm Password" formControlName="confirmPassword">
+        <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password">
         <mat-error *ngIf="registrationForm.hasError('valuesMismatch')">
           Passwords are different
         </mat-error>
@@ -72,7 +80,7 @@
         <mat-slide-toggle formControlName="notification"></mat-slide-toggle>
       </section>
 
-      <button type="submit" mat-raised-button color="primary" [disabled]="registrationForm.invalid">Register</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="registrationForm.invalid && submitted">Register</button>
     </form>
   </mat-card>
 

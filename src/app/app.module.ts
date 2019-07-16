@@ -14,7 +14,7 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatNativeDateModule, MatRadioModule, MatSlideToggleModule, MatToolbarModule
+  MatListModule, MatNativeDateModule, MatRadioModule, MatSlideToggleModule, MatToolbarModule, MatProgressSpinnerModule, MatProgressBarModule
 } from '@angular/material';
 import {ServerComponent} from './servers/server/server.component';
 import {LoginComponent} from './auth/login/login.component';
@@ -27,9 +27,14 @@ import {TokenInterceptor} from './auth/token.interceptor';
 import { AddressLineComponent } from './address-line/address-line.component';
 import { AddressPipePipe } from './address-line/address-pipe.pipe';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from 'src/environments/environment';
+
 const MATERIAL = [
   MatCardModule, MatListModule, MatDividerModule, MatGridListModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule,
-  MatToolbarModule, MatExpansionModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatSlideToggleModule
+  MatToolbarModule, MatExpansionModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatSlideToggleModule,
+  MatProgressSpinnerModule, MatProgressBarModule
 ];
 
 @NgModule({
@@ -50,9 +55,12 @@ const MATERIAL = [
     HttpClientModule,
     ReactiveFormsModule,
     ...MATERIAL,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase, 'angular-first-test'),
+    AngularFireDatabaseModule
   ],
-  providers: [ServerService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+  providers: [ServerService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
