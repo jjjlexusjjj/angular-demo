@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BoxContainerComponent } from './box-container.component';
+import { BoxItemComponent } from '../box-item/box-item.component';
 
 describe('BoxContainerComponent', () => {
   let component: BoxContainerComponent;
@@ -8,7 +9,8 @@ describe('BoxContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BoxContainerComponent ]
+      imports: [],
+      declarations: [ BoxContainerComponent, BoxItemComponent ]
     })
     .compileComponents();
   }));
