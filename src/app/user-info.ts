@@ -1,4 +1,4 @@
-import {User} from './auth/user';
+import {User} from './core/auth/user';
 
 export class UserInfo extends User {
 

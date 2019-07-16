@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { UserInfo } from '../user-info';
+import { UserInfo } from '../../user-info';
 import { Observable, from } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';

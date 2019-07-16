@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Address} from '../user-info';
 import {Subscription} from 'rxjs';
+import { Address } from '@app/user-info';
 
 @Component({
   selector: 'app-address-line',

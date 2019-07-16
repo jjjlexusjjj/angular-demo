@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {equalFields, blackList} from './custom.validator';
-import {Address, UserInfo} from '../../user-info';
 import { BlackListService } from './black-list.service';
-import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { UserService } from '@app/core/auth/user.service';
+import { Address, UserInfo } from '@app/user-info';
 
 @Component({
   selector: 'app-registration',

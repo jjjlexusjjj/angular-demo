@@ -7,9 +7,10 @@ import { environment } from '@env/environment';
 import { SharedModule } from '@app/shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '@app/auth/auth.service';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthService } from './auth/auth.service';
 
-const declarationsForExport = [HeaderComponent];
+const declarationsForExport = [HeaderComponent, LoginComponent];
 
 @NgModule({
   declarations: [...declarationsForExport],
