@@ -1,0 +1,24 @@
+<form [formGroup]="addressForm">
+  <div>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Country" formControlName="country">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="State" formControlName="state">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="City" formControlName="city">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Street" formControlName="street">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Building" formControlName="building">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Flat" formControlName="flat">
+    </mat-form-field>
+  </div>
+</form>

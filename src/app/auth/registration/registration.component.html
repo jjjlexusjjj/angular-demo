@@ -1,15 +1,79 @@
-<form [formGroup]="registrationForm">
-  <mat-form-field>
-    <input matInput placeholder="Username">
-  </mat-form-field>
+<div class="registration-container">
+  <mat-card>
+    <form class="registration-form" [formGroup]="registrationForm" (ngSubmit)="onSave(registrationForm.value)">
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username">
+        <mat-error *ngIf="registrationForm.hasError('required', ['username'])">
+          Username is required
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="Password">
-  </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password">
+        <mat-error *ngIf="registrationForm.hasError('required', ['password'])">Password is required</mat-error>
+        <mat-error *ngIf="registrationForm.hasError('minlength', ['password'])">Password should be at least 6 symbols</mat-error>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input matInput placeholder="Confirm Password">
-  </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Confirm Password" formControlName="confirmPassword">
+        <mat-error *ngIf="registrationForm.hasError('valuesMismatch')">
+          Passwords are different
+        </mat-error>
+      </mat-form-field>
 
-  <button type="submit" mat-button>Register</button>
-</form>
+      <mat-form-field>
+        <input matInput placeholder="Mobile number" type="tel" formControlName="phone">
+        <mat-error *ngIf="registrationForm.hasError('pattern', ['phone'])">
+          Invalid format
+        </mat-error>
+      </mat-form-field>
+
+      <div>
+        <label for="sex">Sex:</label>
+        <mat-radio-group id="sex" formControlName="sex">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Birthday</mat-label>
+        <input #birthdayInput matInput placeholder="Choose a date" formControlName="birthday" [matDatepicker]="birthdayPicker" readonly
+        (click)="birthdayPicker.opened = !birthdayPicker.opened">
+        <button matSuffix mat-button mat-icon-button type="button" color="accent" *ngIf="birthdayInput.value"
+                (click)="registrationForm.get('birthday').reset()"><mat-icon>clear</mat-icon></button>
+        <mat-datepicker-toggle matSuffix [for]="birthdayPicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthdayPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-accordion>
+        <ng-container *ngFor="let c of addressFormArray.controls; let i = index">
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>Address {{i + 1}}</mat-panel-title>
+              <mat-panel-description>{{c.value | addressToString}}</mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div style="display: flex; flex-direction: row; justify-content: center; align-content: center; align-items: center">
+              <app-address-line [formControl]="c"></app-address-line>
+              <button mat-icon-button color="warn" (click)="addressFormArray.removeAt(i)" [disabled]="addressFormArray.length === 1"><mat-icon>delete</mat-icon></button>
+            </div>
+          </mat-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+      <button type="button" mat-icon-button (click)="onAddAddress()" style="align-self: flex-end"><mat-icon>add</mat-icon></button>
+
+      <mat-form-field>
+        <textarea matInput formControlName="notes" placeholder="Notes"></textarea>
+      </mat-form-field>
+
+      <section>
+        <mat-label>Receive notification</mat-label>
+        <mat-slide-toggle formControlName="notification"></mat-slide-toggle>
+      </section>
+
+      <button type="submit" mat-raised-button color="primary" [disabled]="registrationForm.invalid">Register</button>
+    </form>
+  </mat-card>
+
+</div>

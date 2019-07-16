@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import {isNullOrUndefined} from 'util';
 import {Box} from '../box';
 import {BoxItemComponent} from '../box-item/box-item.component';
@@ -9,12 +9,13 @@ import {BoxItemComponent} from '../box-item/box-item.component';
   styleUrls: ['./box-container.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoxContainerComponent implements OnInit {
+export class BoxContainerComponent implements OnInit, AfterViewInit {
 
   boxes: Box[];
   private offsetX: number;
   private offsetY: number;
   private _currentBox: BoxItemComponent;
+  private size = 10000;
 
   private get currentBox(): BoxItemComponent {
     return this._currentBox;
@@ -34,16 +35,33 @@ export class BoxContainerComponent implements OnInit {
       this._currentBox.update();
     }
   }
-  constructor(private cd: ChangeDetectorRef) { }
+  constructor(private cd: ChangeDetectorRef,
+              private componentElement: ElementRef<HTMLElement>) {
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.cd.detach();
+  }
+
+  ngAfterViewInit(): void {
+    this.draw();
+  }
+
+  @HostListener('window:resize')
+  private onHostResize(): void {
+    // this.draw();
+  }
+
+  private draw(): void {
+    const el = this.componentElement.nativeElement;
+    const w = el.offsetWidth - 24;
+    const h = el.offsetHeight - 24;
     const a = [];
-    for (let i = 0; i < 10000; i++) {
-      a.push(new Box(i, Math.random() * 1000, Math.random() * 1000));
+    for (let i = 0; i < this.size; i++) {
+      a.push(new Box(i, Math.random() * w, Math.random() * h));
     }
     this.boxes = a;
     this.cd.detectChanges();
-    this.cd.detach();
   }
 
   onMouseMove(event: MouseEvent): void {

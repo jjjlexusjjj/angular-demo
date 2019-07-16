@@ -1,0 +1,11 @@
+.registration-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form.registration-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 500px;
+}
