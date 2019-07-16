@@ -53,10 +53,15 @@ export class RegistrationComponent implements OnInit {
     this.submitted = true;
     console.log('saving', value);
     this.userService.saveNewUser(new UserInfo(value), value.password)
-    .subscribe(() => this.router.navigate(['/']), e => this.submitted = false);
+    .subscribe(() => this.router.navigate(['/']), e => this.onError(e));
   }
 
   onAddAddress(): void {
     this.addressFormArray.push(new FormControl(new Address({country: 'Ukraine', city: 'Kyiv'})));
+  }
+
+  private onError(e: {code: string, message: string}): void {
+    this.submitted = false;
+    this.registrationForm.setErrors({[e.code]: e.message});
   }
 }

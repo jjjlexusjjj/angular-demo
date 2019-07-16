@@ -80,6 +80,8 @@
         <mat-slide-toggle formControlName="notification"></mat-slide-toggle>
       </section>
 
+      <mat-error *ngFor="let err of registrationForm.errors | keyvalue">{{err.value}}</mat-error>
+
       <button type="submit" mat-raised-button color="primary" [disabled]="registrationForm.invalid || submitted">Register</button>
     </form>
   </mat-card>
