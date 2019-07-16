@@ -29,7 +29,7 @@ import { AddressPipePipe } from './address-line/address-pipe.pipe';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment } from 'src/environments/environment';
+import { environment } from '@env/environment';
 import { UserService } from './auth/user.service';
 
 const MATERIAL = [
