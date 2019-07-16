@@ -1,65 +1,34 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {ServerService} from './server.service';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatCardModule, MatDatepickerModule,
-  MatDividerModule, MatExpansionModule,
-  MatFormFieldModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule, MatNativeDateModule, MatRadioModule, MatSlideToggleModule, MatToolbarModule, MatProgressSpinnerModule, MatProgressBarModule
-} from '@angular/material';
-import {ServerComponent} from './servers/server/server.component';
-import {LoginComponent} from './auth/login/login.component';
-import {RegistrationComponent} from './auth/registration/registration.component';
-import {ServerListComponent} from './servers/server-list/server-list.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {TokenInterceptor} from './auth/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddressLineComponent } from './address-line/address-line.component';
-import { AddressPipePipe } from './address-line/address-pipe.pipe';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment } from '@env/environment';
+import { AddressPipe } from './address-line/address.pipe';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
+import { TokenInterceptor } from './auth/token.interceptor';
 import { UserService } from './auth/user.service';
-import { BoxWorldModule } from './box-world/box-world.module';
+import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-
-const MATERIAL = [
-  MatCardModule, MatListModule, MatDividerModule, MatGridListModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule,
-  MatToolbarModule, MatExpansionModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatSlideToggleModule,
-  MatProgressSpinnerModule, MatProgressBarModule
-];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ServerComponent,
     LoginComponent,
     RegistrationComponent,
-    ServerListComponent,
     AddressLineComponent,
-    AddressPipePipe
+    AddressPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    ...MATERIAL,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'angular-first-test'),
-    AngularFireDatabaseModule
+    SharedModule
   ],
-  providers: [ServerService, UserService,
+  providers: [UserService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

@@ -4,7 +4,7 @@ import {Address} from '../user-info';
 @Pipe({
   name: 'addressToString'
 })
-export class AddressPipePipe implements PipeTransform {
+export class AddressPipe implements PipeTransform {
 
   transform(value: { [P in keyof Address]?: Address[P] }, args?: any): string {
     if (!value) {

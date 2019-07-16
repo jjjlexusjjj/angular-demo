@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Server} from './server';
 import {Observable, of} from 'rxjs';
 import {catchError, flatMap, map, tap} from 'rxjs/operators';
-import {environment} from '../environments/environment';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class ServerService {
