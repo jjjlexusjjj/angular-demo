@@ -1,6 +1,7 @@
-import { AbstractControl, ValidationErrors, ValidatorFn, AsyncValidatorFn } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { BlackListService } from './black-list.service';
 
 
 export function equalFields(controlName: string, checkWithControlName: string): ValidatorFn {
@@ -23,18 +24,19 @@ export function equalFields(controlName: string, checkWithControlName: string): 
   return validatorFn;
 }
 
-export function blackList(emails: string[]): AsyncValidatorFn {
+export function blackList(blackListService: BlackListService): AsyncValidatorFn {
   const validatorFn = function (control: AbstractControl): Observable<ValidationErrors | null> {
     return of(control.value)
       .pipe(
         tap(v => console.log('start blacklisting')),
-        delay(3000),
+        switchMap(v => blackListService.isBlackListEmail(v)),
         map(v => {
-          if (emails.includes(v)) {
+          if (v) {
             return { blackList: v };
           }
           return null;
-        })
+        }),
+        tap(v => console.log('black list validation result', v))
       );
   };
   return validatorFn;

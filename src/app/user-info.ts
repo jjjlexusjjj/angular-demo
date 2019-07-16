@@ -9,6 +9,7 @@ export class UserInfo extends User {
   public sex: 'male' | 'female';
   public notes: string;
   public notification: boolean;
+  public authHash: string;
 
   constructor(props?: { [P in keyof UserInfo]?: UserInfo[P] }) {
     super();

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {equalFields, blackList} from './custom.validator';
-import {Address} from '../../user-info';
+import {Address, UserInfo} from '../../user-info';
 import { BlackListService } from './black-list.service';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   addressFormArray: FormArray;
   submitted = false;
 
-  constructor(private blackListService: BlackListService, private fb: FormBuilder, private db: AngularFireDatabase) { }
+  constructor(private blackListService: BlackListService, private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
     this.createForm();
@@ -29,7 +29,7 @@ export class RegistrationComponent implements OnInit {
       )]);
     this.registrationForm = this.fb.group({
       'username': ['', Validators.required],
-      'email': ['', [Validators.required, Validators.email], blackList(this.blackListService.getEmails())],
+      'email': ['', [Validators.required, Validators.email], blackList(this.blackListService)],
       'password': new FormControl('', [Validators.required, Validators.minLength(6)]),
       'confirmPassword': new FormControl(''),
       'phone': new FormControl('+380', Validators.pattern(/\d{4,}/)),
@@ -47,13 +47,8 @@ export class RegistrationComponent implements OnInit {
     }
     this.submitted = true;
     console.log('saving', value);
-    const response = this.db.list('/users').push(value)
-    .then(resp => console.log(resp))
-    .catch(e => {
-      console.log('Error occured', e);
-      this.submitted = false;
-    });
-    console.log(response);
+    this.userService.saveNewUser(new UserInfo(value))
+    .subscribe();
   }
 
   onAddAddress(): void {

@@ -30,6 +30,7 @@ import { AddressPipePipe } from './address-line/address-pipe.pipe';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from 'src/environments/environment';
+import { UserService } from './auth/user.service';
 
 const MATERIAL = [
   MatCardModule, MatListModule, MatDividerModule, MatGridListModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule,
@@ -59,7 +60,7 @@ const MATERIAL = [
     AngularFireModule.initializeApp(environment.firebase, 'angular-first-test'),
     AngularFireDatabaseModule
   ],
-  providers: [ServerService,
+  providers: [ServerService, UserService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
