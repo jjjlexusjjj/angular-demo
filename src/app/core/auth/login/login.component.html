@@ -2,8 +2,9 @@
   <form class="login-form" [formGroup]="userForm">
     <mat-form-field>
       <mat-icon matPrefix [inline]="false">account_circle</mat-icon>
-      <input matInput placeholder="Username" formControlName="username" name="username">
-      <mat-error *ngIf="userForm.get('username').hasError('required')">Username is required</mat-error>
+      <input matInput placeholder="Email" formControlName="email" name="email">
+      <mat-error *ngIf="userForm.hasError('required', ['email'])">Email is required</mat-error>
+      <mat-error *ngIf="userForm.hasError('email', ['email'])">Email is invalid</mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -13,8 +14,11 @@
       <mat-error *ngIf="userForm.get('password').hasError('required')">Password is required</mat-error>
     </mat-form-field>
 
+    <!-- <p>{{userForm.errors | json}}</p> -->
+    <mat-error *ngFor="let err of userForm.errors | keyvalue">{{err.value}}</mat-error>
+
     <div style="display: flex">
-        <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid" style="flex: 1 1; margin-right: 16px">Log in</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid || submitted" style="flex: 1 1; margin-right: 16px">Log in</button>
         <button mat-raised-button type="button" routerLink="/registration">Register</button>
     </div>
   </form>

@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,10 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
 
   showPassword = false;
+  submitted = false;
   userForm: FormGroup;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -20,13 +22,23 @@ export class LoginComponent implements OnInit {
 
   private createForm(): void {
     this.userForm = new FormGroup({
-      'username': new FormControl('', Validators.required),
+      'email': new FormControl('', [Validators.required, Validators.email]),
       'password': new FormControl('', Validators.required)
     });
   }
 
-  onLogin(value: {username: string, password: string}): void {
+  onLogin(value: {email: string, password: string}): void {
+    this.submitted = true;
     this.auth.login(value)
-      .subscribe();
+      .subscribe(() => this.router.navigate(['/']), e => this.handleError(e));
+  }
+
+  private handleError(e: {code: string, message: string}): void {
+    this.submitted = false;
+    if (e.code === '') {
+
+    } else {
+      this.userForm.setErrors({[e.code]: e.message});
+    }
   }
 }

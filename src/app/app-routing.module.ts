@@ -3,7 +3,7 @@ import { Routes, RouterModule, PreloadAllModules, NoPreloading } from '@angular/
 import { LoginComponent } from './core/auth/login/login.component';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: '/login'},
+  {path: '', pathMatch: 'full', redirectTo: '/servers'},
   {path: 'login', component: LoginComponent},
   {path: 'registration', loadChildren: './reg/registration.module#RegistrationModule'},
   {path: 'servers', loadChildren: './servers/servers.module#ServersModule'},

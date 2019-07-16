@@ -9,20 +9,26 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth) { }
 
-  get currentUser() {
+  public get currentUser() {
     return this.afAuth.user
-      .pipe(map((u: firebase.User | null) => {
-          if (u) {
-            return new User()
-          } else {
-            return null;
-          }
-        }
-      ));
+      .pipe(map((u: firebase.User | null) => u ? new User({ id: u.uid, name: u.displayName, email: u.email }) : null));
   }
 
-  public login(value: { username: string; password: string }): Observable<any> {
-    return empty();
+  public login(value: { email: string; password: string }): Observable<any> {
+    return from(this.afAuth.auth.signInWithEmailAndPassword(value.email, value.password))
+      .pipe(
+        tap(c => console.log('logged in', c)),
+        catchError((e: { code: string, message: string }) => {
+          console.log('login error', e);
+          throw e;
+        })
+      );
+  }
+
+  public logout(): Observable<void> {
+    console.log('logging out');
+    return from(this.afAuth.auth.signOut())
+      .pipe(tap(() => console.log('logged out')));
   }
 
   public register(user: User, password: string): Observable<any> {
