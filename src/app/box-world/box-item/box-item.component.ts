@@ -1,6 +1,7 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild, HostListener} from '@angular/core';
-import {Box} from '../box';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef,
+  Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { PopUpService } from '@app/core/pop-up/pop-up.service';
+import { Box } from '../box';
 
 @Component({
   selector: 'app-box-item',

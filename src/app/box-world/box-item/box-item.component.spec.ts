@@ -12,8 +12,8 @@ describe('BoxItemComponent', () => {
 
   beforeEach(async(() => {
     popUpServiceStub = {
-      show: (message: string): void => {console.log('not existed method')}
-    }
+      show: (message: string): void => {}
+    };
     TestBed.configureTestingModule({
       declarations: [ BoxItemComponent ],
       providers: [{provide: PopUpService, useValue: popUpServiceStub}]
