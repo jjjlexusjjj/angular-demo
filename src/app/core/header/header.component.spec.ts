@@ -6,6 +6,7 @@ import { AuthService } from '../auth/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { User } from '../auth/user';
+import { By } from '@angular/platform-browser';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -34,7 +35,8 @@ describe('HeaderComponent', () => {
   });
 
   it('should show logged user name', () => {
-    const authServ = fixture.debugElement.injector.get(AuthService);
-    expect(authStub).toEqual(authServ);
-  })
+    const userSpan: HTMLSpanElement = fixture.debugElement.query(By.css('.user')).nativeElement;
+    expect(userSpan).toBeTruthy();
+    expect(userSpan.innerText).toContain('testuser@test.test');
+  });
 });
