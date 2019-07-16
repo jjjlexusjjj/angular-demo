@@ -21,8 +21,6 @@ import {LoginComponent} from './auth/login/login.component';
 import {RegistrationComponent} from './auth/registration/registration.component';
 import {ServerListComponent} from './servers/server-list/server-list.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {BoxItemComponent} from './box-world/box-item/box-item.component';
-import {BoxContainerComponent} from './box-world/box-container/box-container.component';
 import {TokenInterceptor} from './auth/token.interceptor';
 import { AddressLineComponent } from './address-line/address-line.component';
 import { AddressPipePipe } from './address-line/address-pipe.pipe';
@@ -31,6 +29,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '@env/environment';
 import { UserService } from './auth/user.service';
+import { BoxWorldModule } from './box-world/box-world.module';
+import { CoreModule } from './core/core.module';
 
 const MATERIAL = [
   MatCardModule, MatListModule, MatDividerModule, MatGridListModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule,
@@ -45,14 +45,13 @@ const MATERIAL = [
     LoginComponent,
     RegistrationComponent,
     ServerListComponent,
-    BoxItemComponent,
-    BoxContainerComponent,
     AddressLineComponent,
     AddressPipePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CoreModule,
     HttpClientModule,
     ReactiveFormsModule,
     ...MATERIAL,
