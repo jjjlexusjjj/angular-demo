@@ -14,7 +14,7 @@
   <div class="servers-container">
     <app-server *ngFor="let server of servers; let i = index" [server]="server" (onRemove)="onRemove(i)"></app-server>
   </div>
-  <button mat-fab class="add-fab-button"><mat-icon>add</mat-icon></button>
+  <button mat-fab class="add-fab-button" (click)="onAdd()"><mat-icon>add</mat-icon></button>
   <!--</mat-grid-list>-->
   
   <div class="details">

@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddressLineComponent } from './address-line/address-line.component';
 import { AddressPipe } from './address-line/address.pipe';
+import { PopUpService } from './pop-up/pop-up.service';
+import { PopUpComponent } from './pop-up/pop-up/pop-up.component';
 
 const MATERIAL = [
   MatCardModule, MatListModule, MatDividerModule, MatGridListModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule,
@@ -26,7 +28,7 @@ const ANGULAR = [
 ];
 
 const DECLARE_TO_EXPORT = [
-  AddressLineComponent, AddressPipe
+  AddressLineComponent, AddressPipe, PopUpComponent
 ];
 
 @NgModule({
@@ -35,10 +37,12 @@ const DECLARE_TO_EXPORT = [
     ...ANGULAR,
     ...MATERIAL
   ],
+  providers: [PopUpService],
   exports: [
     ...ANGULAR,
     ...MATERIAL,
     ...DECLARE_TO_EXPORT
-  ]
+  ],
+  entryComponents: [PopUpComponent]
 })
 export class SharedModule { }

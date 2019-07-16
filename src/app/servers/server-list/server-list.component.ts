@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Server} from '../server';
 import {ServerService} from '../server.service';
+import { PopUpService } from '@app/shared/pop-up/pop-up.service';
 
 @Component({
   selector: 'app-server-list',
@@ -21,7 +22,7 @@ export class ServerListComponent implements OnInit {
     }
   ];
 
-  constructor(private serverService: ServerService) {
+  constructor(private serverService: ServerService, private popupService: PopUpService) {
   }
 
   onAddServer(name: string): void {
@@ -46,4 +47,7 @@ export class ServerListComponent implements OnInit {
       .subscribe(data => this.servers = data);
   }
 
+  onAdd(): void {
+    this.popupService.show('Pop up message text');
+  }
 }
