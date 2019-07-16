@@ -1,0 +1,8 @@
+.servers-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.servers-container app-server {
+  margin: 8px;
+}

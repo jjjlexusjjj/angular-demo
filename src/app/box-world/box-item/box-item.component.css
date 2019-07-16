@@ -1,0 +1,9 @@
+.selected {
+  border: red solid 1px;
+}
+
+.box-item {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+}

@@ -1,0 +1,18 @@
+<div class="outer-form-container" (submit)="onLogin(userForm.value)">
+  <form class="login-form" [formGroup]="userForm">
+    <mat-form-field>
+      <mat-icon matPrefix [inline]="false">account_circle</mat-icon>
+      <input matInput placeholder="Username" formControlName="username" name="username">
+      <mat-error *ngIf="userForm.get('username').hasError('required')">Username is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-icon matPrefix [inline]="false">lock</mat-icon>
+      <input matInput placeholder="Password" [type]="showPassword ? 'text' : 'password'" formControlName="password">
+      <mat-icon matSuffix (click)="showPassword = !showPassword">{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="userForm.get('password').hasError('required')">Password is required</mat-error>
+    </mat-form-field>
+
+    <button mat-button type="submit" [disabled]="userForm.invalid">Log in</button>
+  </form>
+</div>

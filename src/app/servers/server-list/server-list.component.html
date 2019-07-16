@@ -1,0 +1,16 @@
+<div style="padding: 10px 20px;">
+  <mat-form-field>
+    <input #newServerInput matInput placeholder="Server Name">
+  </mat-form-field>
+  <button type="button" mat-button (click)="onAddServer(newServerInput.value)" [disabled]="!newServerInput.value"><mat-icon [inline]="true">add</mat-icon>Add Server</button>
+  <!--<mat-divider [vertical]="true"></mat-divider>-->
+  <button type="button" mat-button (click)="onSave()"><mat-icon [inline]="true">save</mat-icon>Save</button>
+</div>
+
+<mat-divider></mat-divider>
+
+<!--<mat-grid-list [cols]="5">-->
+<div class="servers-container">
+  <app-server *ngFor="let server of servers; let i = index" [server]="server" (onRemove)="onRemove(i)"></app-server>
+</div>
+<!--</mat-grid-list>-->
