@@ -35,12 +35,13 @@ describe('BoxItemComponent', () => {
 
   it('should show message', () => {
     const service = TestBed.get(PopUpService);
-    const spy = spyOn(service, 'show').and.returnValue('asfadsgasdg');
+    const spy = spyOn(service, 'show');
     // console.log('result of service show', service.show('sf'));
     // fixture.debugElement.query(By.css('.box-item')).triggerEventHandler('dblclick', null);
     fixture.debugElement.triggerEventHandler('dblclick', null);
     fixture.detectChanges();
-    expect(spy).toHaveBeenCalled();
+    expect(spy.calls.count()).toEqual(1);
+    expect(spy.calls.argsFor(0)).toEqual(['You hit me!']);
   });
 
   it('should change color after dblclick', () => {
