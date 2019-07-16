@@ -4,17 +4,25 @@ import { SharedModule } from '@app/shared/shared.module';
 import { ServerComponent } from './server/server.component';
 import { ServerListComponent } from './server-list/server-list.component';
 import { ServerService } from './server.service';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Route } from '@angular/router';
+import { ServerDetailsComponent } from './server-details/server-details.component';
+
+const routes: Route[] = [
+  {path: '', component: ServerListComponent, children: [
+    {path: ':id', component: ServerDetailsComponent}
+  ]}
+];
 
 @NgModule({
   declarations: [
     ServerComponent,
-    ServerListComponent
+    ServerListComponent,
+    ServerDetailsComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild([{path: '', component: ServerListComponent}])
+    RouterModule.forChild(routes)
   ],
   providers: [
     ServerService

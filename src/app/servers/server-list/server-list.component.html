@@ -9,8 +9,14 @@
 
 <mat-divider></mat-divider>
 
-<!--<mat-grid-list [cols]="5">-->
-<div class="servers-container">
-  <app-server *ngFor="let server of servers; let i = index" [server]="server" (onRemove)="onRemove(i)"></app-server>
+<div class="server-layout">
+  <!--<mat-grid-list [cols]="5">-->
+  <div class="servers-container">
+    <app-server *ngFor="let server of servers; let i = index" [server]="server" (onRemove)="onRemove(i)"></app-server>
+  </div>
+  <!--</mat-grid-list>-->
+  
+  <div class="details">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<!--</mat-grid-list>-->

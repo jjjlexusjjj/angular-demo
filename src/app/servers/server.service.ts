@@ -17,7 +17,7 @@ export class ServerService {
       .pipe(
         tap(data => console.log('get response', data)),
         map(data => Object.values(data).reduce((previousValue, currentValue) => previousValue.concat(currentValue), [])),
-        catchError( err => of([]))
+        // catchError( err => console.log('get servers error', err))
       );
   }
 

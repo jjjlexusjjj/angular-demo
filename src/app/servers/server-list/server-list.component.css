@@ -1,8 +1,18 @@
 .servers-container {
   display: flex;
+  flex: 1 1 auto;
   flex-flow: row wrap;
 }
 
 .servers-container app-server {
   margin: 8px;
+}
+
+.server-layout {
+  display: flex;
+}
+
+.details {
+  display: flex;
+  flex: 1 1 auto;
 }
