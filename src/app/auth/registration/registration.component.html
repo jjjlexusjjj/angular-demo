@@ -80,7 +80,7 @@
         <mat-slide-toggle formControlName="notification"></mat-slide-toggle>
       </section>
 
-      <button type="submit" mat-raised-button color="primary" [disabled]="registrationForm.invalid && submitted">Register</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="registrationForm.invalid || submitted">Register</button>
     </form>
   </mat-card>
 

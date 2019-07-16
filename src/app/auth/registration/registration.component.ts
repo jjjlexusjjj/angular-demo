@@ -4,6 +4,7 @@ import {equalFields, blackList} from './custom.validator';
 import {Address, UserInfo} from '../../user-info';
 import { BlackListService } from './black-list.service';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +18,11 @@ export class RegistrationComponent implements OnInit {
   addressFormArray: FormArray;
   submitted = false;
 
-  constructor(private blackListService: BlackListService, private fb: FormBuilder, private userService: UserService) { }
+  constructor(
+    private blackListService: BlackListService,
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit() {
     this.createForm();
@@ -38,7 +43,7 @@ export class RegistrationComponent implements OnInit {
       'notes': new FormControl(''),
       'notification': new FormControl(true),
       'address': this.addressFormArray
-    }, equalFields('confirmPassword', 'password'));
+    }, {validators: [equalFields('confirmPassword', 'password')]});
   }
 
   onSave(value): void {
@@ -47,8 +52,8 @@ export class RegistrationComponent implements OnInit {
     }
     this.submitted = true;
     console.log('saving', value);
-    this.userService.saveNewUser(new UserInfo(value))
-    .subscribe();
+    this.userService.saveNewUser(new UserInfo(value), value.password)
+    .subscribe(() => this.router.navigate(['/']), e => this.submitted = false);
   }
 
   onAddAddress(): void {

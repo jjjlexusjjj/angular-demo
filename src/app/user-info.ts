@@ -3,7 +3,6 @@ import {User} from './auth/user';
 export class UserInfo extends User {
 
   public phone: string;
-  public email: string;
   public addresses: Address[];
   public birthday: Date;
   public sex: 'male' | 'female';

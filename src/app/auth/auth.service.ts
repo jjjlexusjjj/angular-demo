@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
+import {Observable, empty, from} from 'rxjs';
 import {User} from './user';
-import { environment } from '@env/environment';
+import { tap, catchError } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
-  private host: string = environment.firebase + 'users.json';
-
-  constructor(private http: HttpClient) { }
+  constructor(private afAuth: AngularFireAuth) { }
 
   public login(value: { username: string; password: string }): Observable<any> {
-    return this.http.get(this.host);
+    return empty();
   }
 
   public register(user: User, password: string): Observable<any> {
-    const data = {...user, password: password};
-    return this.http.post(this.host, data);
+    console.log(`registering user ${user.email} with pass ${password}`, this.afAuth);
+    return from(this.afAuth.auth.app.auth().createUserWithEmailAndPassword(user.email, password))
+    .pipe(
+      tap(r => console.log('registration complete', r)),
+      catchError(e => {
+        console.log('error on reg', e);
+        throw e;
+      })
+    );
   }
 }
