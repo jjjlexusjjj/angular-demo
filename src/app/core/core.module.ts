@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 
 const declarationsForExport = [HeaderComponent, LoginComponent];
 
@@ -22,7 +23,7 @@ const declarationsForExport = [HeaderComponent, LoginComponent];
     SharedModule,
     RouterModule.forChild([])
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   exports: [...declarationsForExport]
 })
 export class CoreModule {
