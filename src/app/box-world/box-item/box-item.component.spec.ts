@@ -4,6 +4,7 @@ import { BoxItemComponent } from './box-item.component';
 import { Box } from '../box';
 import { PopUpService } from '@app/core/pop-up/pop-up.service';
 import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 describe('BoxItemComponent', () => {
   let component: BoxItemComponent;
@@ -40,5 +41,13 @@ describe('BoxItemComponent', () => {
     fixture.debugElement.triggerEventHandler('dblclick', null);
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should change color after dblclick', () => {
+    const item: DebugElement = fixture.debugElement.query(By.css('.box-item'));
+    const initialColor = item.styles['background-color'];
+    fixture.debugElement.triggerEventHandler('dblclick', null);
+    // fixture.detectChanges();
+    expect(item.styles['background-color']).not.toBe(initialColor);
   });
 });

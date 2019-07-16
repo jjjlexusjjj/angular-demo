@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="header" *ngIf="headerTemplate">
+    <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+  </div>
+  <div class="content"><ng-content></ng-content></div>
+  <div class="footer">
+    <ng-container *ngIf="actionTemplate; else defaultActionTemplate">
+      <ng-container *ngFor="let a of actions; let i = index; let f = first; let l = last">
+        <ng-container *ngTemplateOutlet="actionTemplate; context: {$implicit: a, index: i, first: f, last: l}"></ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-template #defaultActionTemplate>
+      <span *ngFor="let a of actions">{{a}}</span>
+    </ng-template>
+  </div>
+</div>

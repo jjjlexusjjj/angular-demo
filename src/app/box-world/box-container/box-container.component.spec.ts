@@ -9,10 +9,13 @@ describe('BoxContainerComponent', () => {
   let fixture: ComponentFixture<BoxContainerComponent>;
 
   beforeEach(async(() => {
+    const popUpServiceStub: Partial<PopUpService> = {
+      show: (message: string) => {}
+    };
     TestBed.configureTestingModule({
       imports: [],
       declarations: [ BoxContainerComponent, BoxItemComponent ],
-      providers: [PopUpService]
+      providers: [{provide: PopUpService, useValue: popUpServiceStub}]
     })
     .compileComponents();
   }));

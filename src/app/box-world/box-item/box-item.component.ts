@@ -49,7 +49,6 @@ export class BoxItemComponent implements OnInit, AfterViewInit {
 
   @HostListener('dblclick')
   private onDoubleClick(): void {
-    console.log('dblClick on box item');
     this.popUpService.show('You hit me!');
     this.color = BoxItemComponent.randomColor();
     this.cdr.detectChanges();

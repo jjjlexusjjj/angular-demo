@@ -8,7 +8,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registration', loadChildren: './reg/registration.module#RegistrationModule'},
   {path: 'servers', loadChildren: './servers/servers.module#ServersModule', canActivate: [AuthGuard]},
-  {path: 'boxes', loadChildren: './box-world/box-world.module#BoxWorldModule', canActivate: [AuthGuard]}
+  {path: 'boxes', loadChildren: './box-world/box-world.module#BoxWorldModule', canActivate: [AuthGuard]},
+  {path: 'demo', loadChildren: './test-page/test-page.module#TestPageModule'}
 ];
 
 @NgModule({

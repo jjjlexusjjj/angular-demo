@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddressLineComponent } from './address-line/address-line.component';
 import { AddressPipe } from './address-line/address.pipe';
+import { MyPanelComponent } from './my-panel/my-panel.component';
+import { TemplateDirective } from './template.directive';
 
 const MATERIAL = [
   MatCardModule, MatListModule, MatDividerModule, MatGridListModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule,
@@ -26,7 +28,7 @@ const ANGULAR = [
 ];
 
 const DECLARE_TO_EXPORT = [
-  AddressLineComponent, AddressPipe
+  AddressLineComponent, AddressPipe, MyPanelComponent, TemplateDirective
 ];
 
 @NgModule({

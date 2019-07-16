@@ -1,0 +1,12 @@
+<h3>Demo Page</h3>
+<app-my-panel [actions]="actionList">
+  <ng-template appTemplate="header">
+    <h1>My header</h1>
+  </ng-template>
+  <ng-template appTemplate="action" let-item let-i="index" let-first="first">
+    <button mat-flat-button [color]="first ? 'primary' : undefined">{{item}}-{{i}}</button>
+  </ng-template>
+  <p>
+    My content
+  </p>
+</app-my-panel>

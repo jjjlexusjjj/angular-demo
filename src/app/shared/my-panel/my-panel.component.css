@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+    
+}
+
+.container .header {
+    display: flex;
+    border: 1px solid gray;
+    background-color: lightgray;
+}
+
+.container .content {
+    display: flex;
+    flex: 1 1 auto;
+    /* border: 1px solid black; */
+}
+
+.container .footer {
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
