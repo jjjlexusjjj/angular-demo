@@ -1,5 +1,6 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild, HostListener} from '@angular/core';
 import {Box} from '../box';
+import { PopUpService } from '@app/core/pop-up/pop-up.service';
 
 @Component({
   selector: 'app-box-item',
@@ -23,14 +24,18 @@ export class BoxItemComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef, private popUpService: PopUpService) { }
 
   private static rndColor(): number {
     return Math.round(Math.random() * 255);
   }
 
+  private static randomColor(): string {
+    return `rgba(${BoxItemComponent.rndColor()}, ${BoxItemComponent.rndColor()}, ${BoxItemComponent.rndColor()}, 0.5)`;
+  }
+
   ngOnInit() {
-    this.color = `rgba(${BoxItemComponent.rndColor()}, ${BoxItemComponent.rndColor()}, ${BoxItemComponent.rndColor()}, 0.5)`;
+    this.color = BoxItemComponent.randomColor();
   }
 
   public update(): void {
@@ -39,5 +44,13 @@ export class BoxItemComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.cdr.detach();
+  }
+
+  @HostListener('dblclick')
+  private onDoubleClick(): void {
+    console.log('dblClick on box item');
+    this.popUpService.show('You hit me!');
+    this.color = BoxItemComponent.randomColor();
+    this.cdr.detectChanges();
   }
 }

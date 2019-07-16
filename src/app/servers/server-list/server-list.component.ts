@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Server} from '../server';
 import {ServerService} from '../server.service';
-import { PopUpService } from '@app/shared/pop-up/pop-up.service';
+import { PopUpService } from '@app/core/pop-up/pop-up.service';
 
 @Component({
   selector: 'app-server-list',

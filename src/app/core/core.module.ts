@@ -10,8 +10,10 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
+import { PopUpComponent } from './pop-up/pop-up/pop-up.component';
+import { PopUpService } from './pop-up/pop-up.service';
 
-const declarationsForExport = [HeaderComponent, LoginComponent];
+const declarationsForExport = [HeaderComponent, LoginComponent, PopUpComponent];
 
 @NgModule({
   declarations: [...declarationsForExport],
@@ -23,8 +25,9 @@ const declarationsForExport = [HeaderComponent, LoginComponent];
     SharedModule,
     RouterModule.forChild([])
   ],
-  providers: [AuthService, AuthGuard],
-  exports: [...declarationsForExport]
+  providers: [AuthService, AuthGuard, PopUpService],
+  exports: [...declarationsForExport],
+  entryComponents: [PopUpComponent]
 })
 export class CoreModule {
   constructor(

@@ -7,7 +7,7 @@ import { ServerComponent } from '../server/server.component';
 import { ServerService } from '../server.service';
 import { of } from 'rxjs';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { PopUpService } from '@app/shared/pop-up/pop-up.service';
+import { PopUpService } from '@app/core/pop-up/pop-up.service';
 
 describe('ServerListComponent', () => {
   let component: ServerListComponent;
