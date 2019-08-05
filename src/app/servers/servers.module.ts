@@ -6,12 +6,13 @@ import { ServerListComponent } from './server-list/server-list.component';
 import { ServerService } from './server.service';
 import { RouterModule, Route } from '@angular/router';
 import { ServerDetailsComponent } from './server-details/server-details.component';
+import { ServersRoutingModule } from './servers-routing.module';
 
-const routes: Route[] = [
-  {path: '', component: ServerListComponent, children: [
-    {path: ':id', component: ServerDetailsComponent}
-  ]}
-];
+// const routes: Route[] = [
+//   {path: '', component: ServerListComponent, children: [
+//     {path: ':id', component: ServerDetailsComponent}
+//   ]}
+// ];
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ const routes: Route[] = [
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule.forChild(routes)
+    ServersRoutingModule
+    // RouterModule.forChild(routes)
   ],
   providers: [
     ServerService
