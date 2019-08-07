@@ -18,7 +18,7 @@ export class BoxItemComponent implements OnInit, AfterViewInit {
 
   color: string;
 
-  @ViewChild('divItem')
+  @ViewChild('divItem', {static: true})
   private set div (value: ElementRef<HTMLDivElement>) {
     if (value) {
       value.nativeElement['BoxItemComponent'] = this;
