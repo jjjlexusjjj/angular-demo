@@ -12,6 +12,13 @@ export const environment = {
     storageBucket: 'angular-first-test-49240.appspot.com',
     messagingSenderId: '1037884302322'
   },
+  answer: {
+    ALL_ANSWERS: "http://localhost:8080/answers",
+    FIND_ANSWER: "http://localhost:8080/answer/:id",
+    PUT_ANSWER: "http://localhost:8080/answer/:id",
+    POST_ANSWER: "http://localhost:8080/answer/",
+    PATCH_ANSWER: "http://localhost:8080/answer/:id",
+  }
 };
 
 /*

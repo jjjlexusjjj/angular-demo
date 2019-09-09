@@ -1,0 +1,39 @@
+<div>
+    <form [formGroup]="changeAnswer">
+        <div class="change-answer">
+            <mat-form-field>
+                <mat-label>Answer title</mat-label>
+                <input matInput #title maxlength="50" placeholder="Title" formControlName="title" name="title">
+                <!-- <mat-hint align="start"><strong>Don't disclose personal info</strong></mat-hint> -->
+                <!-- <mat-hint align="end">{{title.value.length}} / 50</mat-hint> -->
+            </mat-form-field>
+            <app-answer-array [parentForm]="changeAnswer" [array]="tags" [placeHolder]="'Selected tags'"></app-answer-array>
+            <mat-form-field style="flex: 2 0 auto;">
+                <mat-label>Answer image link</mat-label>
+                <input matInput #image maxlength="100" placeholder="Image link" formControlName="image" name="image">
+                <!-- <mat-hint align="start"><strong>Input required tags for search</strong></mat-hint> -->
+                <mat-hint align="end">{{image?.value?.length}} / 100</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Answer description</mat-label>
+                <input matInput #description maxlength="50" placeholder="Answer description" formControlName="description" name="description">
+                <mat-hint align="end">{{description?.value?.length}} / 50</mat-hint>
+            </mat-form-field>
+            <app-answer-array [parentForm]="changeAnswer" [array]="links" [placeHolder]="'Selected links'" style="flex: 2 0 auto;"></app-answer-array>
+        </div>
+        <!-- <mat-divider></mat-divider> -->
+        <div class="change-answer">
+            <mat-form-field style="flex: 1 0 auto;">
+                <mat-label>Answer code</mat-label>
+                <textarea matInput #code maxlength="50" placeholder="Answer code" formControlName="code" required rows=20></textarea>
+                <mat-error>Missing answer code</mat-error>
+                <!-- <mat-hint align="end">{{code?.value?.length}} / 50</mat-hint> -->
+                <mat-hint align="end">code</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="change-answer">
+            <button type="button" mat-button (click)="onChange()"><mat-icon [inline]="true">save</mat-icon>Change</button>
+            <!-- <button type="button" mat-button routerLink="create"><mat-icon [inline]="true">question_answer</mat-icon>Create New Answer</button> -->
+        </div>
+    </form>
+</div>

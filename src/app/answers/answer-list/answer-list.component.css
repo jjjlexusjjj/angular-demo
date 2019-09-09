@@ -1,0 +1,11 @@
+.answers-container {
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: row wrap;
+}
+
+.answers-container app-answer-item {
+    margin: 8px 6px;
+    display: flex;
+    flex: 1 1 auto;
+}

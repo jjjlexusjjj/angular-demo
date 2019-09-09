@@ -1,0 +1,37 @@
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+}
+
+h1 {
+    padding-left: .5em;
+}
+
+.shorthand {
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.longhand {
+    flex-flow: wrap row;
+}
+
+.longhand li {
+    background: deepskyblue;
+}
+
+.flex-item {
+    flex: 1 0 auto;
+    background: tomato;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    line-height: 100px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}

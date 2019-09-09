@@ -1,0 +1,28 @@
+.change-answer {
+    display: flex;
+    flex-flow: row wrap;
+    /* flex-direction: row wrap; */
+}
+
+.change-answer button,
+mat-form-field {
+    box-shadow: 0 0 7px black;
+}
+
+app-answer-array,
+mat-form-field {
+    margin: 8px 6px;
+    min-width: 300px;
+    /* display: flex; */
+    flex: 1 0 auto;
+    /* max-width: 600px; */
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.change-answer button:hover {
+    box-shadow: 0 0 7px yellow;
+}
+
+button.mat-button {
+    margin: 8px;
+}

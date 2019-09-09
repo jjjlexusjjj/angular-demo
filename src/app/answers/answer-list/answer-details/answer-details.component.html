@@ -1,0 +1,23 @@
+<div>
+    <mat-card *ngIf="answer">
+        <mat-card-header>
+            <img *ngIf="answer?.image" mat-card-avatar src="{{answer?.image}}" />
+            <mat-card-title>{{answer?.id}} - {{answer?.title}}</mat-card-title>
+            <!-- <mat-card-subtitle>Answer</mat-card-subtitle> -->
+        </mat-card-header>
+        <mat-card-content>
+            <p>Description: {{answer?.description}}</p>
+            <p>Code:</p>
+            <pre>{{answer?.code}}</pre>
+            <p>Name: {{answer?.links}}</p>
+            <p>Created: {{answer?.createdDate | date}}</p>
+            <p>: {{answer?.createdDate | date}}</p>
+            <mat-card-actions align="end">
+                <button mat-icon-button color="prime" mat-button [routerLink]="['../edit', answer?.id]"><mat-icon>edit</mat-icon></button>
+                <!-- <button mat-icon-button color="prime" mat-button [routerLink]="['/answers/edit', answer?.id]"><mat-icon>edit</mat-icon></button> -->
+                <!-- <button mat-icon-button color="prime" mat-button [routerLink]="['/edit', answer?.id]"><mat-icon>edit</mat-icon></button> -->
+                <button type="button" mat-icon-button color="warn" (click)="onRemoveClick()"><mat-icon>delete</mat-icon></button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -8,10 +8,12 @@ import { TokenInterceptor } from './core/auth/token.interceptor';
 import { UserService } from './core/auth/user.service';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { FlexedDivComponent } from './flexed-div/flexed-div.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FlexedDivComponent,
   ],
   imports: [
     BrowserModule,

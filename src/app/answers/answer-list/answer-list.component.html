@@ -1,0 +1,3 @@
+<div class="answers-container">
+    <app-answer-item #answerItem *ngFor="let answer of answers; let i = index" [answer]="answer" (click)="onClick(answerItem)"></app-answer-item>
+</div>

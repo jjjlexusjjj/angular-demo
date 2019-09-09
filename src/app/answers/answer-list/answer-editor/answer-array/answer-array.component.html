@@ -1,0 +1,11 @@
+<div>
+    <mat-form-field [formGroup]="parentForm">
+        <mat-chip-list #chipList aria-label="Links to matherial">
+            <mat-chip *ngFor="let element of array" [selectable]="selectable" [removable]="removable" (removed)="remove(element)">
+                {{element}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="{{placeHolder}}" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+    </mat-form-field>
+</div>

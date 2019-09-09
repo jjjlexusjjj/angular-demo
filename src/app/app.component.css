@@ -1,0 +1,12 @@
+.header-container {
+    background-image: url("img/astronomy-constellation-dark-998641.jpg");
+    /* opacity: 0.1; */
+}
+
+.root-container {
+    /* background-image: url("img/blue-sky-bright-cloudiness-1431822.jpg"); */
+    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url("img/blue-sky-bright-cloudiness-1431822.jpg");
+    /* background: linear-gradient(green, rgb(168, 47, 47)) */
+    /* , url("img/blue-sky-bright-cloudiness-1431822.jpg"); */
+    /* background-image: url("img/astrology-astronomy-background-image-956981.jpg"); */
+}
