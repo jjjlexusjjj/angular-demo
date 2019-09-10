@@ -1,15 +1,21 @@
-<mat-toolbar color="primary">
-  <button mat-button routerLink="/"><h1>My Mega App</h1></button>
-  <button mat-button routerLink="/servers">Servers</button>
-  <button mat-button routerLink="/boxes">Boxes</button>
-  <button mat-button routerLink="/demo">Demo</button>
-  <span style="flex: 1 1;"></span>
-  <!-- <span>{{currentUser | async | json}}</span> -->
-  <ng-container *ngIf="currentUser | async as user; else login">
-    <span class="user">{{user.name || user.email}}</span>
-    <button mat-icon-button (click)="logout()"><mat-icon>exit_to_app</mat-icon></button>
-  </ng-container>
-  <ng-template #login>
-      <button mat-button routerLink="/login">Login</button>
-  </ng-template>
+<!-- <mat-toolbar color="primary"> -->
+<mat-toolbar>
+    <button mat-button routerLink="/"><h1>My Mega App</h1></button>
+    <button mat-button routerLink="/servers">Servers</button>
+    <button mat-button routerLink="/boxes">Boxes</button>
+    <button mat-button routerLink="/demo">Demo</button>
+    <button mat-button routerLink="answers">Answers</button>
+    <!-- <button mat-button [routerLink]="['answers']">Answers</button> -->
+    <!-- <button mat-button [routerLink]="['answers/edit', '2']">Answers - edit</button> -->
+    <!-- <button mat-button [routerLink]="['answers/create']">Answer - create</button> -->
+    <button mat-button routerLink="/divs">Div layouts</button>
+    <span style="flex: 1 1;"></span>
+    <!-- <span>{{currentUser | async | json}}</span> -->
+    <ng-container *ngIf="currentUser | async as user; else login">
+        <span class="user">{{user.name || user.email}}</span>
+        <button mat-icon-button (click)="logout()"><mat-icon>exit_to_app</mat-icon></button>
+    </ng-container>
+    <ng-template #login>
+        <button mat-button routerLink="/login">Login</button>
+    </ng-template>
 </mat-toolbar>

@@ -1,0 +1,34 @@
+.full-width {
+    width: 100%;
+}
+
+.answer-search-bar {
+    display: flex;
+    flex-direction: row wrap;
+}
+
+.search-bar-control {
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar-control button {
+    /* background-color: whitesmoke; */
+    box-shadow: 0 0 7px black;
+}
+
+mat-form-field {
+    margin: 8px;
+}
+
+.search-bar-control button:hover {
+    box-shadow: 0 0 7px yellow;
+}
+
+button.mat-button {
+    margin: 0 8px;
+}
+
+div {
+    padding: 8px;
+}

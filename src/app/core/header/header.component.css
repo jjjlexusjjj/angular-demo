@@ -1,3 +1,22 @@
 .user {
     font-weight: bold;
 }
+
+mat-toolbar {
+    /* color: "primary"; */
+    /* color: lightcyan; */
+    background-color: transparent;
+    /* background-image: url("img/astronomy-constellation-dark-998641.jpg"); */
+    /* background-image: url("img/blue-sky-bright-cloudiness-1431822.jpg"); */
+    /* background-image: url("img/astrology-astronomy-background-image-956981.jpg"); */
+}
+
+mat-toolbar * {
+    color: lightcyan;
+    /* text-shadow: 2px 2px 4px #1cffd9; */
+}
+
+mat-toolbar :hover {
+    color: yellow;
+    text-shadow: 2px 2px 4px #ff9b9b;
+}

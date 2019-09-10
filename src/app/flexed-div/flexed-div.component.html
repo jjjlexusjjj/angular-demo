@@ -1,0 +1,47 @@
+<h1>flex-wrap: wrap; flex-direction: row;</h1>
+<ul class="flex-container longhand">
+    <li class="flex-item">1</li>
+    <li class="flex-item">2</li>
+    <li class="flex-item">3</li>
+    <li class="flex-item">4</li>
+    <li class="flex-item">5</li>
+    <li class="flex-item">6</li>
+    <li class="flex-item">7</li>
+    <li class="flex-item">8</li>
+    <li class="flex-item">9</li>
+    <li class="flex-item">10</li>
+    <li class="flex-item">11</li>
+    <li class="flex-item">12</li>
+</ul>
+
+<h1>flex-flow: row wrap;</h1>
+<ul class="flex-container shorthand">
+    <li class="flex-item">1</li>
+    <li class="flex-item">2</li>
+    <li class="flex-item">3</li>
+    <li class="flex-item">4</li>
+    <li class="flex-item">5</li>
+    <li class="flex-item">6</li>
+    <li class="flex-item">7</li>
+    <li class="flex-item">8</li>
+    <li class="flex-item">9</li>
+    <li class="flex-item">10</li>
+    <li class="flex-item">11</li>
+    <li class="flex-item">12</li>
+</ul>
+
+<hr>
+
+<div fxLayout="row wrap">
+    <!-- <div fxFlex="1 0 auto"> -->
+    <div class="flexitem one">1 one</div>
+    <div class="flexitem two">2 two</div>
+    <div class="flexitem three">3 tree</div>
+    <div fxFlexAlign="end" class="flexitem four">4 four</div>
+    <div fxFlexAlign="stretch" class="flexitem five">5 five</div>
+    <div class="flexitem six">6 six</div>
+    <div fxFlex="1 0 auto" class="flexitem seven">7 seven</div>
+    <div class="flexitem eight">8 eight</div>
+    <div fxFlexAlign="center" fxFlex="1 0 auto" class="flexitem nine">9 nine</div>
+    <div fxFlex="1 0 auto" class="flexitem ten">10 ten</div>
+</div>
