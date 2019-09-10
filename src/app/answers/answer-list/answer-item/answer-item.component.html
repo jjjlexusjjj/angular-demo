@@ -9,9 +9,8 @@
         <p>Name: {{answer?.description}}</p>
         <p>Created: {{answer?.createdDate | date}}</p>
     </mat-card-content>
-    <mat-card-actions align="end">
-        <!-- TODO fix event propagation. Event should be storpped after routing/ -->
-        <button mat-icon-button color="prime" mat-button [routerLink]="['edit', answer?.id]"><mat-icon>edit</mat-icon></button>
-        <!-- <button type="button" mat-icon-button color="warn" (click)="onRemoveClick(+answer?.id)"><mat-icon>delete</mat-icon></button> -->
+    <mat-card-actions align="end" (click)="$event.stopPropagation();">
+        <button type="button" mat-icon-button color="prime" mat-button [routerLink]="['edit', answer?.id]"><mat-icon>edit</mat-icon></button>
+        <button type="button" mat-icon-button color="warn" (click)="onRemoveClick(+answer?.id)"><mat-icon>delete</mat-icon></button>
     </mat-card-actions>
 </mat-card>

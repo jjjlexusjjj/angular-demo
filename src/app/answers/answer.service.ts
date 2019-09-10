@@ -6,12 +6,23 @@ export class AnswerService {
 
   constructor() { }
 
-  save(answer: Answer): number {
-    if (!answer.id) {
-      this.removeAnswer(answer.id);
+  // save(answer: Answer): number {
+  //   if (answer.id) {
+  //     this.removeAnswer(answer.id);
+  //   } else {
+  //     answer.id = this.generateId();
+  //   }
+  //   return this.answers.push(answer);
+  // }
+  save(answer: Answer) {
+    if (answer.id) {
+      const element = this.findAnswer(answer.id);
+      const index = this.answers.indexOf(element);
+      this.answers[index] = answer;
+    } else {
       answer.id = this.generateId();
+      return this.answers.push(answer);
     }
-    return this.answers.push(answer);
   }
   findAnswer(id: number): Answer {
     var filtered: Answer[] = this.getAnswers().filter(ans => ans.id === id);
