@@ -1,14 +1,19 @@
 import { AfterContentInit, Component, ContentChildren, Input, OnInit, QueryList, TemplateRef } from '@angular/core';
 import { TemplateDirective } from '../template.directive';
 
+type TemplateNames = 'headerTemplate' | 'actionTemplate';
+type TemplateInterface = {
+  [K in TemplateNames]: TemplateRef<any>
+};
+
 @Component({
   selector: 'app-my-panel',
   templateUrl: './my-panel.component.html',
   styleUrls: ['./my-panel.component.css']
 })
-export class MyPanelComponent implements OnInit, AfterContentInit {
+export class MyPanelComponent implements OnInit, AfterContentInit, TemplateInterface {
 
-  private readonly templateMap: {[userTemplateName: string]: keyof MyPanelComponent} = {
+  private readonly templateMap: { [userTemplateName: string]: TemplateNames } = {
     header: 'headerTemplate',
     action: 'actionTemplate'
   };
@@ -29,8 +34,10 @@ export class MyPanelComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit(): void {
     this.templates
-    .filter(t => t.name in this.templateMap)
-    .forEach(t => this[this.templateMap[t.name]] = t.template);
+      .filter(t => t.name in this.templateMap)
+      .forEach(t => this[this.templateMap[t.name]] = t.template);
   }
 
 }
+
+

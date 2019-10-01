@@ -7,11 +7,11 @@ import { FlexedDivComponent } from './flexed-div/flexed-div.component';
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/answers'},
   {path: 'login', component: LoginComponent},
-  {path: 'registration', loadChildren: './reg/registration.module#RegistrationModule'},
-  {path: 'servers', loadChildren: './servers/servers.module#ServersModule', canActivate: [AuthGuard]},
-  {path: 'boxes', loadChildren: './box-world/box-world.module#BoxWorldModule', canActivate: [AuthGuard]},
-  {path: 'demo', loadChildren: './test-page/test-page.module#TestPageModule'},
-  {path: 'answers', loadChildren: './answers/answers.module#AnswersModule'},
+  {path: 'registration', loadChildren: () => import('./reg/registration.module').then(m => m.RegistrationModule)},
+  {path: 'servers', loadChildren: () => import('./servers/servers.module').then(m => m.ServersModule), canActivate: [AuthGuard]},
+  {path: 'boxes', loadChildren: () => import('./box-world/box-world.module').then(m => m.BoxWorldModule), canActivate: [AuthGuard]},
+  {path: 'demo', loadChildren: () => import('./test-page/test-page.module').then(m => m.TestPageModule)},
+  {path: 'answers', loadChildren: () => import('./answers/answers.module').then(m => m.AnswersModule)},
   {path: 'divs', component: FlexedDivComponent}
 ];
 
